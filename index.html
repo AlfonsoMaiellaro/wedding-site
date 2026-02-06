@@ -71,11 +71,10 @@
       position:relative;
       display:grid;
       place-items:center;
-      padding:110px 16px 36px; /* desktop base */
+      padding:110px 16px 36px; /* desktop */
       overflow:hidden;
     }
-
-    /* ✅ MOBILE: più spazio sopra per menu su 2 righe */
+    /* ✅ MOBILE: spazio sopra per menu su 2 righe */
     @media (max-width:700px){
       .hero{ padding-top:155px; }
     }
@@ -85,11 +84,10 @@
       position:absolute;inset:0;
       background-image:url("assets/hero.jpeg");
       background-size:cover;
-      background-position:50% 70%;  /* desktop */
+      background-position:50% 70%;
       transform: scale(1.02);
       pointer-events:none;
     }
-
     .hero::after{
       content:"";
       position:absolute;inset:0;
@@ -110,10 +108,8 @@
       background: var(--glass);
       box-shadow: 0 18px 60px rgba(0,0,0,.35);
       text-align:center;
-      transform:none; /* niente spostamento su mobile */
+      transform:none;
     }
-
-    /* ✅ solo desktop “effetto elegante” */
     @media (min-width:900px){
       .card{ transform: translateY(-40px); }
     }
@@ -130,8 +126,8 @@
       border:1px solid var(--border);
       background: rgba(0,0,0,.25);
     }
-
     h1{margin:14px 0 8px;font-size:54px;letter-spacing:-.8px;line-height:1.02}
+    @media (max-width:560px){h1{font-size:40px}}
     .sub{margin:0 auto 18px;max-width:55ch;color:var(--muted);font-size:16px}
 
     .cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -153,27 +149,64 @@
     }
     .quicklink:hover{opacity:1;text-decoration:underline}
 
-    /* ✅ MOBILE: rende la card più compatta e lascia più foto visibile */
+    /* ✅ MOBILE FIX: la card NON deve coprire tutta la foto sotto */
     @media (max-width:560px){
-      /* inquadratura foto SOLO su mobile (prova 30% / 35% / 40%) */
-      .hero::before{ background-position:50% 35%; }
-
-      .card{
-        width:min(720px, 94%);
-        padding:18px 16px;   /* più compatta */
+      /* 1) alza un po’ la card */
+      .hero{
+        /* meno spazio “extra” sotto */
+        padding-bottom:18px;
       }
 
-      h1{font-size:36px}
-      .kicker{font-size:12px;padding:8px 12px}
-      .sub{font-size:14px;margin-bottom:14px}
+      /* 2) rendi la card più compatta */
+      .card{
+        width:min(720px, 92%);
+        padding:14px 14px;        /* prima era 18/16 */
+        border-radius:16px;
+        /* ✅ la alziamo senza farla andare sotto al menu */
+        transform: translateY(-24px);
+      }
 
-      /* bottoni in colonna */
+      .kicker{
+        font-size:11px;
+        padding:7px 10px;
+      }
+
+      h1{
+        font-size:34px;
+        margin:10px 0 6px;
+      }
+
+      .quicklink{
+        margin:0 0 6px;
+        font-size:14px;
+      }
+
+      .sub{
+        font-size:14px;
+        margin:0 auto 10px;
+        line-height:1.35;
+      }
+
+      /* 3) bottoni più bassi */
       .cta{
         flex-direction:column;
         align-items:stretch;
         gap:10px;
+        margin-top:8px;
       }
-      .cta .btn{width:100%}
+      .cta .btn{
+        width:100%;
+        padding:11px 12px; /* meno alti */
+      }
+
+      .mini{
+        margin-top:10px;
+        font-size:12px;
+      }
+
+      /* ✅ opzionale: se vuoi vedere ANCORA più foto sotto,
+         sposta leggermente l’inquadratura (non cambia la foto, solo l’inquadratura) */
+      .hero::before{ background-position:50% 78%; }
     }
   </style>
 </head>
