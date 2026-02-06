@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="assets/style.css">
   <title>Programma — Alfonso & Silvia</title>
 
   <style>
@@ -25,7 +24,7 @@
       overflow-x:hidden;
     }
 
-    /* ✅ FOTO DI SFONDO (visibile) */
+    /* ✅ FOTO DI SFONDO */
     body::before{
       content:"";
       position:fixed;
@@ -33,16 +32,12 @@
       background-image:url("assets/sfondo.jpeg");
       background-size:cover;
       background-repeat:no-repeat;
-
-     /* QUI sposti l’inquadratura: così non vedi solo cielo */
-     background-position: 70% 85%;
-
-     opacity:1;
-     z-index:-2;
+      background-position: 70% 85%;
+      opacity:1;
+      z-index:-2;
     }
 
-
-    /* ✅ OVERLAY SCURO LEGGERO (non copre troppo la foto) */
+    /* ✅ OVERLAY */
     body::after{
       content:"";
       position:fixed;
@@ -61,19 +56,19 @@
       padding:14px 16px;
       background:rgba(0,0,0,.40);
       backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.12)
+      border-bottom:1px solid rgba(255,255,255,.12);
     }
     .nav-inner{
       width:min(1100px,100%);
       margin:0 auto;
-      display:flex;align-items:center;justify-content:space-between;gap:12px
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
     }
     .brand{font-weight:800}
     .menu{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .menu a{
       text-decoration:none;font-weight:800;font-size:13px;
       padding:10px 12px;border-radius:999px;border:1px solid transparent;
-      color:rgba(255,255,255,.86)
+      color:rgba(255,255,255,.86);
     }
     .menu a:hover{border-color:var(--border);background:rgba(255,255,255,.08);color:#fff}
     .menu a.active{border-color:var(--border);background:rgba(255,255,255,.12);color:#fff}
@@ -84,6 +79,11 @@
       display:grid;
       place-items:center;
       padding:92px 16px 64px;
+    }
+
+    /* ✅ MOBILE: più spazio sopra (navbar alta) */
+    @media (max-width:700px){
+      .wrap{ padding-top:155px; }
     }
 
     .content{
@@ -109,13 +109,14 @@
       background:rgba(255,255,255,.06);
     }
     .row + .row{margin-top:10px}
+
     .time{
       min-width:62px;height:38px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
       display:grid;place-items:center;
       font-weight:950;
-      background:rgba(0,0,0,.20)
+      background:rgba(0,0,0,.20);
     }
     .t{margin:0;font-weight:900}
     .d{margin:4px 0 0;color:var(--muted)}
