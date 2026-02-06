@@ -22,6 +22,7 @@
       font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
       color:var(--text);
       background:var(--bg);
+      overflow-x:hidden;
     }
     a{color:inherit}
 
@@ -46,6 +47,7 @@
       border-radius:999px;
       border:1px solid transparent;
       color:var(--accent2);
+      white-space:nowrap;
     }
     .menu a:hover{border-color:var(--border); background: rgba(0,0,0,.18); color:var(--text)}
     .menu a.active{border-color:var(--border); background: rgba(0,0,0,.28); color:var(--text)}
@@ -64,9 +66,15 @@
       position:relative;
       display:grid;
       place-items:center;
-      padding:92px 16px 30px;
+      padding:110px 16px 36px; /* base */
       overflow:hidden;
     }
+
+    /* ✅ MOBILE: più spazio sopra (menu su 2 righe) */
+    @media (max-width:700px){
+      .hero{ padding-top:155px; }
+    }
+
     .hero::before{
       content:"";
       position:absolute;inset:0;
@@ -74,7 +82,7 @@
       background-size:cover;
       background-position:50% 70%;
       transform: scale(1.02);
-      pointer-events:none; /* IMPORTANT: non blocca i click */
+      pointer-events:none;
     }
     .hero::after{
       content:"";
@@ -82,12 +90,12 @@
       background:
         radial-gradient(900px 520px at 50% 58%, rgba(0,0,0,.10), rgba(0,0,0,.50) 62%, rgba(0,0,0,.65)),
         linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.45));
-      pointer-events:none; /* IMPORTANT: non blocca i click */
+      pointer-events:none;
     }
 
     .card{
       position:relative;
-      z-index:2; /* sopra gli overlay */
+      z-index:2;
       width:min(820px, 100%);
       padding:26px 22px;
       border-radius:var(--radius);
@@ -95,8 +103,16 @@
       background: var(--glass);
       box-shadow: 0 18px 60px rgba(0,0,0,.35);
       text-align:center;
-      transform: translateY(-90px);
+
+      /* ✅ NIENTE più spostamento verso l’alto (era la causa principale su mobile) */
+      transform:none;
     }
+
+    /* ✅ Se vuoi “effetto su desktop”, lo facciamo SOLO su schermi grandi */
+    @media (min-width:900px){
+      .card{ transform: translateY(-40px); }
+    }
+
     .kicker{
       display:inline-block;
       font-weight:800;
@@ -111,11 +127,29 @@
     }
     h1{margin:14px 0 8px;font-size:54px;letter-spacing:-.8px;line-height:1.02}
     @media (max-width:560px){h1{font-size:40px}}
+
     .sub{margin:0 auto 18px;max-width:55ch;color:var(--muted);font-size:16px}
+
     .cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-    .cta .btn.primary{background: rgba(255,255,255,.92); color:#0b0c10; border-color: rgba(255,255,255,.92)}
+
+    .cta .btn.primary{
+      background: rgba(255,255,255,.92);
+      color:#0b0c10;
+      border-color: rgba(255,255,255,.92)
+    }
     .cta .btn.primary:hover{background:#fff}
+
     .mini{margin-top:18px;color:rgba(255,255,255,.70);font-size:12px}
+
+    /* Link “Chiesa & Location” sotto al titolo: rendiamolo più carino e distanziato */
+    .quicklink{
+      display:inline-block;
+      margin:0 0 10px;
+      font-weight:800;
+      text-decoration:none;
+      opacity:.9;
+    }
+    .quicklink:hover{opacity:1;text-decoration:underline}
   </style>
 </head>
 
@@ -139,7 +173,10 @@
   <main class="hero">
     <section class="card" aria-label="Intro">
       <span class="kicker">1 Agosto 2026 • Salerno & Costiera Amalfitana</span>
-      <h1>Alfonso e Silvia</h1><a href="location.html">Chiesa &amp; Location</a>
+      <h1>Alfonso e Silvia</h1>
+
+      <a class="quicklink" href="location.html">Chiesa &amp; Location</a>
+
       <p class="sub">
         Siamo felici di festeggiare con voi.<br>
         Qui trovate tutte le informazioni su giornata, location e conferma presenza.
