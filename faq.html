@@ -32,7 +32,7 @@
       background-image:url("assets/sfondo.jpeg");
       background-size:cover;
       background-repeat:no-repeat;
-      background-position: 70% 85%;
+      background-position:70% 85%;
       z-index:-2;
     }
 
@@ -55,36 +55,45 @@
       padding:14px 16px;
       background:rgba(0,0,0,.40);
       backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.12)
+      border-bottom:1px solid rgba(255,255,255,.12);
     }
     .nav-inner{
       width:min(1100px,100%);
       margin:0 auto;
-      display:flex;align-items:center;justify-content:space-between;gap:12px
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
     }
     .brand{font-weight:800}
     .menu{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .menu a{
-      text-decoration:none;font-weight:800;font-size:13px;
-      padding:10px 12px;border-radius:999px;border:1px solid transparent;
-      color:rgba(255,255,255,.86)
+      text-decoration:none;
+      font-weight:800;
+      font-size:13px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid transparent;
+      color:rgba(255,255,255,.86);
+      white-space:nowrap;
     }
     .menu a:hover{border-color:var(--border);background:rgba(255,255,255,.08);color:#fff}
     .menu a.active{border-color:var(--border);background:rgba(255,255,255,.12);color:#fff}
 
-    /* CENTRATURA CONTENUTO (come Programma) */
+    /* CONTENUTO */
     .wrap{
       min-height:100svh;
       display:grid;
       place-items:center;
-      padding:92px 16px 64px;
-    }
-    .content{
-      width:min(820px,100%);
+      padding:92px 16px 64px;  /* desktop */
     }
 
+    /* ✅ MOBILE: più spazio sopra (menu alto su 2 righe) */
+    @media (max-width:700px){
+      .wrap{ padding-top:220px; } /* <-- cambia SOLO questo numero se serve */
+    }
+
+    .content{width:min(820px,100%)}
+
     h1{margin:0 0 10px;font-size:34px;letter-spacing:-.4px}
-    p{margin:0 0 18px;color:var(--muted)}
+    p{margin:0 0 18px;color:var(--muted);line-height:1.5}
 
     details{
       border:1px solid var(--border);
@@ -95,7 +104,7 @@
     }
     details + details{margin-top:10px}
     summary{cursor:pointer;font-weight:950}
-    .ans{margin-top:8px;color:var(--muted)}
+    .ans{margin-top:8px;color:var(--muted);line-height:1.5}
   </style>
 </head>
 
@@ -128,32 +137,33 @@
 
     <details>
       <summary>Come posso confermare?</summary>
-      <div class="ans">Con Il modulo "Conferma la tua presenza" sul sito (super comodo). Se preferisci, va benissimo anche un messaggio o una chiamata: trovi i numeri in Contatti 😊</div>
+      <div class="ans">
+        Con il modulo <strong>“Conferma la tua presenza”</strong> sul sito (super comodo).
+        Se preferisci, va benissimo anche un messaggio o una chiamata: trovi i numeri in Contatti 😊
+      </div>
     </details>
-    
-     <details>
+
+    <details>
       <summary>Dove possiamo parcheggiare?</summary>
-      <div class="ans">La location ha un parcheggio in loco 🚗<br>
-      Un consiglio: sarebbe ideale venire in auto condivise (3–4 per macchina). </div>
+      <div class="ans">
+        La location ha un parcheggio in loco 🚗<br>
+        Piccolo consiglio: se potete, venite in <strong>auto condivise</strong> (3–4 persone) così lasciamo spazio a tutti.
+      </div>
     </details>
-    
+
     <details>
       <summary>Ci sono opzioni per intolleranze o restrizioni alimentari?</summary>
-      <div class="ans">Certo: inserisci tutto nel modulo "Conferma la tua presenza" e ci pensiamo noi.</div>
+      <div class="ans">Certo: inserisci tutto nel modulo “Conferma la tua presenza” e ci pensiamo noi.</div>
     </details>
 
     <details>
       <summary>C’è un dress code?</summary>
-      <div class="ans">Elegante, ma comodo: l’importante è ballare (e arrivare con il sorriso) ✨<br>
-      Consiglio da amici: scarpe comode sempre una buona idea.</div>
+      <div class="ans">
+        Elegante, ma comodo: l’importante è ballare (e arrivare con il sorriso) ✨<br>
+        Consiglio da amici: scarpe comode sempre una buona idea.
+      </div>
     </details>
   </div>
 </main>
 </body>
 </html>
-
-
-
-
-
-
