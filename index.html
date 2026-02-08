@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Alfonso & Silvia — 1 Agosto 2026</title>
-  <meta name="description" content="Sito del matrimonio di Alfonso e Silvia: evento, programma, location, Conferma la tua presenza, FAQ e regali." />
+  <meta name="description" content="Sito del matrimonio di Alfonso e Silvia: evento, programma, location, conferma presenza, FAQ e regali." />
 
   <style>
     :root{
@@ -140,46 +140,20 @@
 
     .mini{margin-top:18px;color:rgba(255,255,255,.70);font-size:12px}
 
-    .quicklink{
-      display:inline-block;
-      margin:0 0 10px;
-      font-weight:800;
-      text-decoration:none;
-      opacity:.9;
-    }
-    .quicklink:hover{opacity:1;text-decoration:underline}
-
-    /* ✅ MOBILE FIX: la card NON deve coprire tutta la foto sotto */
+    /* ✅ MOBILE FIX: card più compatta e un po' più in alto */
     @media (max-width:560px){
-      /* 1) alza un po’ la card */
-      .hero{
-        /* meno spazio “extra” sotto */
-        padding-bottom:18px;
-      }
+      .hero{ padding-bottom:18px; }
 
-      /* 2) rendi la card più compatta */
       .card{
         width:min(720px, 92%);
-        padding:14px 14px;        /* prima era 18/16 */
+        padding:14px 14px;
         border-radius:16px;
-        /* ✅ la alziamo senza farla andare sotto al menu */
         transform: translateY(-48px);
       }
 
-      .kicker{
-        font-size:11px;
-        padding:7px 10px;
-      }
+      .kicker{ font-size:11px; padding:7px 10px; }
 
-      h1{
-        font-size:34px;
-        margin:10px 0 6px;
-      }
-
-      .quicklink{
-        margin:0 0 6px;
-        font-size:14px;
-      }
+      h1{ font-size:34px; margin:10px 0 6px; }
 
       .sub{
         font-size:14px;
@@ -187,7 +161,6 @@
         line-height:1.35;
       }
 
-      /* 3) bottoni più bassi */
       .cta{
         flex-direction:column;
         align-items:stretch;
@@ -196,16 +169,12 @@
       }
       .cta .btn{
         width:100%;
-        padding:11px 12px; /* meno alti */
+        padding:11px 12px;
       }
 
-      .mini{
-        margin-top:10px;
-        font-size:12px;
-      }
+      .mini{ margin-top:10px; font-size:12px; }
 
-      /* ✅ opzionale: se vuoi vedere ANCORA più foto sotto,
-         sposta leggermente l’inquadratura (non cambia la foto, solo l’inquadratura) */
+      /* opzionale: inquadratura mobile */
       .hero::before{ background-position:50% 78%; }
     }
   </style>
@@ -230,22 +199,18 @@
 
   <main class="hero">
     <section class="card" aria-label="Intro">
-      <span class="kicker">1 Agosto 2026 • Salerno & Costiera Amalfitana</span>
+      <span class="kicker">1 Agosto 2026 • Salerno &amp; Costiera Amalfitana</span>
       <h1>Alfonso e Silvia</h1>
 
-      <a class="quicklink" href="location.html">Chiesa &amp; Location</a>
-
       <p class="sub">
-        Siamo felici di festeggiare con voi.<br>
-        Qui trovate tutte le informazioni su giornata, location e conferma presenza.
+        Siamo felici di festeggiare con voi il nostro matrimonio.<br>
+        Qui trovate tutte le info utili sulla giornata.
       </p>
 
       <div class="cta">
         <a class="btn primary"
            href="https://docs.google.com/forms/d/e/1FAIpQLSev_wvk0_GFHD54z9lt7cpu3dRcEWDPRREAroY-0sifc5AQew/viewform?usp=header"
            target="_blank" rel="noreferrer">Conferma la tua presenza</a>
-
-        <a class="btn" href="evento.html">Dettagli evento</a>
       </div>
 
       <div class="mini">Suggerimento: salva questa pagina tra i preferiti ✨</div>
@@ -253,8 +218,3 @@
   </main>
 </body>
 </html>
-
-
-
-
-
