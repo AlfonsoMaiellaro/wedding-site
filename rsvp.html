@@ -76,6 +76,12 @@
       place-items:center;
       padding:92px 16px 64px;
     }
+
+    /* ✅ MOBILE: più spazio sopra (navbar alta) */
+    @media (max-width:700px){
+      .wrap{ padding-top:220px; }
+    }
+
     .content{
       width:min(820px,100%);
     }
@@ -125,7 +131,9 @@
     <p>Conferma la tua presenza tramite il modulo qui sotto.</p>
 
     <section class="card">
-      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSev_wvk0_GFHD54z9lt7cpu3dRcEWDPRREAroY-0sifc5AQew/viewform?usp=header" target="_blank" rel="noreferrer">
+      <a class="btn"
+         href="https://docs.google.com/forms/d/e/1FAIpQLSev_wvk0_GFHD54z9lt7cpu3dRcEWDPRREAroY-0sifc5AQew/viewform?usp=header"
+         target="_blank" rel="noreferrer">
         Apri il modulo "Conferma la tua presenza"
       </a>
     </section>
@@ -133,6 +141,3 @@
 </main>
 </body>
 </html>
-
-
-
