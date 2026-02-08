@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Chiesa &amp; Location — Alfonso & Silvia</title>
+  <title>Album foto — Alfonso & Silvia</title>
 
   <style>
     :root{
@@ -68,32 +68,24 @@
       text-decoration:none;font-weight:800;font-size:13px;
       padding:10px 12px;border-radius:999px;border:1px solid transparent;
       color:rgba(255,255,255,.86);
+      white-space:nowrap;
     }
     .menu a:hover{border-color:var(--border);background:rgba(255,255,255,.08);color:#fff}
     .menu a.active{border-color:var(--border);background:rgba(255,255,255,.12);color:#fff}
 
-    /* ✅ CENTRATURA (come Programma) */
+    /* LAYOUT */
     .wrap{
-      min-height:100svh;
-      display:grid;
-      place-items:center;
+      width:min(1000px,100%);
+      margin:0 auto;
       padding:92px 16px 64px;
     }
-
     /* ✅ MOBILE: più spazio sopra (navbar alta) */
     @media (max-width:700px){
-      .wrap{ padding-top:155px; } /* se ancora copre: 155px */
-    }
-
-    .content{
-      width:min(1000px,100%);
+      .wrap{ padding-top:155px; }
     }
 
     h1{margin:0 0 10px;font-size:34px;letter-spacing:-.4px}
-    p{margin:0 0 18px;color:var(--muted);word-break:break-word}
-
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
-    @media (max-width:860px){.grid{grid-template-columns:1fr}}
+    p{margin:0 0 18px;color:var(--muted);line-height:1.5}
 
     .card{
       border:1px solid var(--border);
@@ -103,40 +95,49 @@
       box-shadow:0 18px 60px rgba(0,0,0,.25);
     }
 
-    .photo{
-      height:240px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.14);
-      background-size:cover;
-      background-position:center;
-      margin:0 0 14px;
-      overflow:hidden;
-    }
-    @media (max-width:520px){.photo{height:200px}}
-
-    .k{
-      font-size:12px;
-      letter-spacing:.9px;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.70);
-      font-weight:900
-    }
+    .k{font-size:12px;letter-spacing:.9px;text-transform:uppercase;color:rgba(255,255,255,.70);font-weight:900}
     .v{font-size:18px;font-weight:950;margin:6px 0 8px}
 
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;
-      margin-top:10px;padding:12px 14px;border-radius:999px;
-      border:1px solid var(--border);
+      padding:12px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.22);
       background:rgba(255,255,255,.10);
       text-decoration:none;font-weight:900;
+      white-space:nowrap;
     }
     .btn:hover{background:rgba(255,255,255,.16)}
+    .btn.primary{
+      background:rgba(255,255,255,.92);
+      color:#0b0c10;
+      border-color:rgba(255,255,255,.92);
+    }
+    .btn.primary:hover{background:#fff}
 
-    iframe{width:100%;height:320px;border:0;border-radius:16px}
-    @media (max-width:520px){ iframe{height:240px} }
+    /* Gallery placeholder */
+    .gallery{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width:860px){.gallery{grid-template-columns:repeat(2, 1fr)}}
+    @media (max-width:520px){.gallery{grid-template-columns:1fr}}
 
-    .small{font-size:12px;color:rgba(255,255,255,.70);margin-top:10px;line-height:1.4}
-    .sep{height:18px}
+    .ph{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      height:180px;
+      display:grid;
+      place-items:center;
+      color:rgba(255,255,255,.70);
+      text-align:center;
+      padding:12px;
+    }
+    .ph strong{color:#fff}
+    .small{font-size:12px;color:rgba(255,255,255,.70);line-height:1.4;margin-top:10px}
   </style>
 </head>
 
@@ -148,7 +149,7 @@
       <a href="index.html">Home</a>
       <a href="evento.html">Evento</a>
       <a href="programma.html">Programma</a>
-      <a class="active" href="location.html">Chiesa &amp; Location</a>
+      <a class="active" href="location.html">Album foto</a>
       <a href="rsvp.html">Conferma la tua presenza</a>
       <a href="faq.html">FAQ</a>
       <a href="regali.html">Regali</a>
@@ -158,62 +159,41 @@
 </header>
 
 <main class="wrap">
-  <div class="content">
-    <h1>Chiesa &amp; Location</h1>
-    <p>Qui trovi entrambe le tappe e puoi aprire il navigatore direttamente.</p>
+  <section class="card">
+    <div class="k">Foto &amp; video</div>
+    <h1 style="margin-top:6px">Album della giornata</h1>
+    <p>
+      Il giorno del matrimonio potete caricare qui i vostri scatti e video: li raccoglieremo tutti in un unico album ✨
+    </p>
 
-    <div class="grid">
-      <section class="card">
-        <div class="k">Cerimonia</div>
-        <div class="photo" style="background-image:url('assets/cripta.jpeg');"></div>
-        <div class="v">Cripta del Duomo di Salerno</div>
-        <p>Via Roberto il Guiscardo, 1, 84121 Salerno SA</p>
-        <a class="btn" target="_blank" rel="noreferrer"
-           href="https://maps.google.com/?q=Cripta%20del%20Duomo%20di%20Salerno%2C%20Via%20Roberto%20il%20Guiscardo%201%2C%20Salerno">
-          Apri su Google Maps
-        </a>
-
-        <div class="sep"></div>
-
-        <div class="k">Ricevimento</div>
-        <div class="photo" style="background-image:url('assets/capodorso.jpeg');"></div>
-        <div class="v">Il Faro di Capo d’Orso</div>
-        <p>Strada Statale Amalfitana, 44, 84010 Maiori SA</p>
-        <a class="btn" target="_blank" rel="noreferrer"
-           href="https://maps.google.com/?q=Il%20Faro%20di%20Capo%20d%27Orso%2C%20Strada%20Statale%20Amalfitana%2044%2C%20Maiori">
-          Apri su Google Maps
-        </a>
-
-        <p class="small">Se vuoi, possiamo aggiungere info su parcheggi / navette / taxi.</p>
-      </section>
-
-      <section class="card">
-        <div class="k">Mappa (precisa)</div>
-
-        <div class="v">Cripta del Duomo</div>
-        <iframe
-          title="Mappa Cripta del Duomo"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96480.43138579538!2d14.644768397265635!3d40.91545030000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133bcc536a4f9d2f%3A0xfec2d8ac8b31fd59!2sCripta%20del%20Duomo!5e0!3m2!1sit!2sit!4v1770393619968!5m2!1sit!2sit">
-        </iframe>
-
-        <div style="height:14px"></div>
-
-        <div class="v">Il Faro di Capo d’Orso</div>
-        <iframe
-          title="Mappa Il Faro di Capo d'Orso"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24221.33908677206!2d14.64298189702661!3d40.63721668642878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133beac16bc195f5%3A0x8273c87a63bae16f!2sIl%20Faro%20di%20Capo%20d%27Orso!5e0!3m2!1sit!2sit!4v1770393706497!5m2!1sit!2sit">
-        </iframe>
-
-        <p class="small">Puoi aprire le mappe anche dai bottoni a sinistra.</p>
-      </section>
+    <div class="btnrow">
+      <!-- SEGNAPOSTO: poi mettiamo il link vero -->
+      <a class="btn primary" href="#" onclick="return false;">Carica foto</a>
+      <a class="btn" href="#" onclick="return false;">Vedi album</a>
     </div>
-  </div>
+
+    <p class="small">
+      (Per ora è simbolico: nel prossimo step colleghiamo questi bottoni a Drive/album reale.)
+    </p>
+  </section>
+
+  <!-- Placeholder “anteprima album” -->
+  <section class="card" style="margin-top:14px">
+    <div class="k">Anteprima</div>
+    <div class="v">Le foto compariranno qui</div>
+    <p class="small" style="margin-top:6px">
+      Quando attiviamo l’album, questa sezione può diventare una galleria vera oppure restare solo come info.
+    </p>
+
+    <div class="gallery">
+      <div class="ph"><div><strong>Foto 1</strong><br>in arrivo 📸</div></div>
+      <div class="ph"><div><strong>Foto 2</strong><br>in arrivo ✨</div></div>
+      <div class="ph"><div><strong>Foto 3</strong><br>in arrivo 🥂</div></div>
+      <div class="ph"><div><strong>Foto 4</strong><br>in arrivo 💛</div></div>
+      <div class="ph"><div><strong>Foto 5</strong><br>in arrivo 🌿</div></div>
+      <div class="ph"><div><strong>Foto 6</strong><br>in arrivo 🌊</div></div>
+    </div>
+  </section>
 </main>
 </body>
 </html>
-
-
