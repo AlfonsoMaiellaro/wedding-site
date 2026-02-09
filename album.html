@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Album foto — Alfonso & Silvia</title>
+  <title>Album della giornata — Alfonso & Silvia</title>
 
   <style>
     :root{
@@ -24,19 +24,15 @@
       overflow-x:hidden;
     }
 
-    /* SFONDO FOTO (come Programma) */
     body::before{
       content:"";
       position:fixed;
       inset:0;
       background-image:url("assets/sfondo.jpeg");
       background-size:cover;
-      background-repeat:no-repeat;
       background-position: 70% 85%;
       z-index:-2;
     }
-
-    /* OVERLAY (come Programma) */
     body::after{
       content:"";
       position:fixed;
@@ -49,7 +45,6 @@
 
     a{color:inherit}
 
-    /* NAV */
     .nav{
       position:fixed;top:0;left:0;right:0;z-index:20;
       padding:14px 16px;
@@ -60,84 +55,79 @@
     .nav-inner{
       width:min(1100px,100%);
       margin:0 auto;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      display:flex;align-items:center;justify-content:space-between;
     }
     .brand{font-weight:800}
     .menu{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .menu a{
       text-decoration:none;font-weight:800;font-size:13px;
-      padding:10px 12px;border-radius:999px;border:1px solid transparent;
+      padding:10px 12px;border-radius:999px;
       color:rgba(255,255,255,.86);
-      white-space:nowrap;
     }
-    .menu a:hover{border-color:var(--border);background:rgba(255,255,255,.08);color:#fff}
-    .menu a.active{border-color:var(--border);background:rgba(255,255,255,.12);color:#fff}
+    .menu a.active{
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.12);
+      color:#fff;
+    }
 
-    /* LAYOUT */
     .wrap{
-      width:min(1000px,100%);
-      margin:0 auto;
+      min-height:100svh;
+      display:grid;
+      place-items:center;
       padding:92px 16px 64px;
     }
-    /* ✅ MOBILE: più spazio sopra (navbar alta) */
     @media (max-width:700px){
       .wrap{ padding-top:220px; }
     }
 
-    h1{margin:0 0 10px;font-size:34px;letter-spacing:-.4px}
-    p{margin:0 0 18px;color:var(--muted);line-height:1.5}
+    .content{
+      width:min(820px,100%);
+      text-align:center;
+    }
+
+    h1{margin:0 0 12px;font-size:34px}
+    p{margin:0 0 20px;color:var(--muted)}
 
     .card{
       border:1px solid var(--border);
       background:var(--glass);
       border-radius:var(--radius);
-      padding:18px;
+      padding:22px;
       box-shadow:0 18px 60px rgba(0,0,0,.25);
     }
 
-    .k{font-size:12px;letter-spacing:.9px;text-transform:uppercase;color:rgba(255,255,255,.70);font-weight:900}
-    .v{font-size:18px;font-weight:950;margin:6px 0 8px}
-
-    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btnrow{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:12px 14px;border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 18px;
+      border-radius:999px;
       border:1px solid rgba(255,255,255,.22);
       background:rgba(255,255,255,.10);
-      text-decoration:none;font-weight:900;
-      white-space:nowrap;
+      text-decoration:none;
+      font-weight:900;
     }
-    .btn:hover{background:rgba(255,255,255,.16)}
     .btn.primary{
       background:rgba(255,255,255,.92);
       color:#0b0c10;
       border-color:rgba(255,255,255,.92);
     }
+    .btn:hover{background:rgba(255,255,255,.16)}
     .btn.primary:hover{background:#fff}
 
-    /* Gallery placeholder */
-    .gallery{
+    .small{
       margin-top:14px;
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:12px;
-    }
-    @media (max-width:860px){.gallery{grid-template-columns:repeat(2, 1fr)}}
-    @media (max-width:520px){.gallery{grid-template-columns:1fr}}
-
-    .ph{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.06);
-      height:180px;
-      display:grid;
-      place-items:center;
+      font-size:12px;
       color:rgba(255,255,255,.70);
-      text-align:center;
-      padding:12px;
+      line-height:1.4;
     }
-    .ph strong{color:#fff}
-    .small{font-size:12px;color:rgba(255,255,255,.70);line-height:1.4;margin-top:10px}
   </style>
 </head>
 
@@ -149,7 +139,7 @@
       <a href="index.html">Home</a>
       <a href="evento.html">Evento</a>
       <a href="programma.html">Programma</a>
-      <a class="active" href="location.html">Album della giornata</a>
+      <a class="active" href="album.html">Album della giornata</a>
       <a href="rsvp.html">Conferma la tua presenza</a>
       <a href="faq.html">FAQ</a>
       <a href="regali.html">Regali</a>
@@ -159,43 +149,33 @@
 </header>
 
 <main class="wrap">
-  <section class="card">
-    <div class="k">Foto &amp; video</div>
-    <h1 style="margin-top:6px">Album della giornata</h1>
-    <p>
-      Il giorno del matrimonio potete caricare qui i vostri scatti e video: li raccoglieremo tutti in un unico album ✨
-    </p>
+  <div class="content">
+    <section class="card">
+      <h1>Album della giornata 📸</h1>
+      <p>
+        Durante il matrimonio potete caricare qui le vostre foto e i vostri video.<br>
+        Li raccoglieremo tutti in un unico album condiviso ✨
+      </p>
 
-    <div class="btnrow">
-      <!-- SEGNAPOSTO: poi mettiamo il link vero -->
-      <a class="btn primary" href="#" onclick="return false;">Carica foto</a>
-      <a class="btn" href="#" onclick="return false;">Vedi album</a>
-    </div>
+      <div class="btnrow">
+        <a class="btn primary"
+           href="https://photos.app.goo.gl/RnYfuxU2w6RRdaw19"
+           target="_blank" rel="noreferrer">
+          Carica le tue foto
+        </a>
 
-    <p class="small">
-      (Per ora è simbolico: nel prossimo step colleghiamo questi bottoni a Drive/album reale.)
-    </p>
-  </section>
+        <a class="btn"
+           href="https://photos.app.goo.gl/RnYfuxU2w6RRdaw19"
+           target="_blank" rel="noreferrer">
+          Vedi l’album
+        </a>
+      </div>
 
-  <!-- Placeholder “anteprima album” -->
-  <section class="card" style="margin-top:14px">
-    <div class="k">Anteprima</div>
-    <div class="v">Le foto compariranno qui</div>
-    <p class="small" style="margin-top:6px">
-      Quando attiviamo l’album, questa sezione può diventare una galleria vera oppure restare solo come info.
-    </p>
-
-    <div class="gallery">
-      <div class="ph"><div><strong>Foto 1</strong><br>in arrivo 📸</div></div>
-      <div class="ph"><div><strong>Foto 2</strong><br>in arrivo ✨</div></div>
-      <div class="ph"><div><strong>Foto 3</strong><br>in arrivo 🥂</div></div>
-      <div class="ph"><div><strong>Foto 4</strong><br>in arrivo 💛</div></div>
-      <div class="ph"><div><strong>Foto 5</strong><br>in arrivo 🌿</div></div>
-      <div class="ph"><div><strong>Foto 6</strong><br>in arrivo 🌊</div></div>
-    </div>
-  </section>
+      <p class="small">
+        Il link apre Google Foto: da lì potete aggiungere, vedere e scaricare tutte le immagini.
+      </p>
+    </section>
+  </div>
 </main>
 </body>
 </html>
-
-
