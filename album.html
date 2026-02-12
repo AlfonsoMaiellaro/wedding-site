@@ -56,7 +56,6 @@
       width:min(1100px,100%);
       margin:0 auto;
       display:flex;align-items:center;justify-content:space-between;
-      gap:12px;
     }
     .brand{font-weight:800}
     .menu{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
@@ -64,7 +63,6 @@
       text-decoration:none;font-weight:800;font-size:13px;
       padding:10px 12px;border-radius:999px;
       color:rgba(255,255,255,.86);
-      white-space:nowrap;
     }
     .menu a.active{
       border:1px solid rgba(255,255,255,.18);
@@ -83,12 +81,12 @@
     }
 
     .content{
-      width:min(900px,100%);
+      width:min(820px,100%);
       text-align:center;
     }
 
     h1{margin:0 0 12px;font-size:34px}
-    p{margin:0 0 20px;color:var(--muted);line-height:1.5}
+    p{margin:0 0 20px;color:var(--muted)}
 
     .card{
       border:1px solid var(--border);
@@ -115,7 +113,6 @@
       background:rgba(255,255,255,.10);
       text-decoration:none;
       font-weight:900;
-      white-space:nowrap;
     }
     .btn.primary{
       background:rgba(255,255,255,.92);
@@ -124,35 +121,6 @@
     }
     .btn:hover{background:rgba(255,255,255,.16)}
     .btn.primary:hover{background:#fff}
-
-    /* ✅ IFRAME AREA */
-    .iframe-wrap{
-      margin-top:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.22);
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 18px 60px rgba(0,0,0,.18);
-    }
-    .iframe-title{
-      padding:12px 14px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      color:rgba(255,255,255,.86);
-      font-weight:900;
-      font-size:13px;
-      letter-spacing:.4px;
-      text-align:left;
-    }
-    iframe{
-      width:100%;
-      height:620px; /* cambia se vuoi più alto/basso */
-      border:0;
-      display:block;
-      background:transparent;
-    }
-    @media (max-width:560px){
-      iframe{ height:560px; }
-    }
 
     .small{
       margin-top:14px;
@@ -186,7 +154,7 @@
       <h1>Album della giornata 📸</h1>
       <p>
         Contribuisci a creare il nostro album dei ricordi!<br>
-        In questa sezione potete caricare le foto scattate durante il matrimonio ✨
+        In questa sezione potrete caricare le foto scattate durante il matrimonio✨
       </p>
 
       <div class="btnrow">
@@ -202,22 +170,6 @@
           Vedi l’album
         </a>
       </div>
-
-      <!-- ✅ IFRAME (tentativo embed Google Foto) -->
-      <div class="iframe-wrap" style="margin-top:18px">
-        <div class="iframe-title">Anteprima album (se supportata dal browser)</div>
-        <iframe
-          src="https://photos.app.goo.gl/RnYfuxU2w6RRdaw19"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <p class="small">
-        Se qui non compare l’album, è normale: Google Foto spesso blocca l’anteprima in iframe.
-        In quel caso usate i bottoni sopra (funzionano sempre).
-      </p>
     </section>
   </div>
 </main>
