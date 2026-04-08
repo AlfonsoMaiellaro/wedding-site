@@ -9,128 +9,107 @@
   <style>
     :root{
       --bg:#0b0c10;
+      --bg2:#11161d;
       --text:#ffffff;
       --muted:rgba(255,255,255,.78);
-      --glass: rgba(10,12,16,.40);
-      --glass-strong: rgba(10,12,16,.62);
-      --border: rgba(255,255,255,.18);
+      --glass: rgba(10,12,16,.34);
+      --glass-strong: rgba(10,12,16,.74);
+      --border: rgba(255,255,255,.16);
       --accent2:rgba(255,255,255,.86);
-      --radius:18px;
+      --radius:20px;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
     html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
       color:var(--text);
-      background:var(--bg);
+      background:linear-gradient(180deg, #0b0c10 0%, #10161f 100%);
       overflow-x:hidden;
     }
     a{color:inherit}
 
-    /* NAV */
+    .container{width:min(1120px, calc(100% - 28px)); margin:0 auto}
+
     .nav{
       position:fixed;top:0;left:0;right:0;z-index:50;
-      display:flex;align-items:center;justify-content:center;
-      padding:14px 16px;
-      background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,0));
-      backdrop-filter: blur(8px);
+      display:flex;justify-content:center;
+      padding:12px 14px;
+      background:linear-gradient(to bottom, rgba(0,0,0,.58), rgba(0,0,0,.12), rgba(0,0,0,0));
+      backdrop-filter: blur(10px);
     }
     .nav-inner{
-      width:min(1100px, 100%);
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      position:relative;
+      width:min(1120px, 100%);
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
     }
-    .brand{font-weight:800;letter-spacing:.2px}
+    .brand{
+      font-weight:800;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      font-size:18px;
+    }
     .menu{
       display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;
     }
     .menu a{
       text-decoration:none;
       font-weight:700;
-      font-size:13px;
-      padding:10px 12px;
+      font-size:14px;
+      padding:10px 14px;
       border-radius:999px;
       border:1px solid transparent;
       color:var(--accent2);
+      background:rgba(0,0,0,.16);
       white-space:nowrap;
     }
-    .menu a:hover{border-color:var(--border); background: rgba(0,0,0,.18); color:var(--text)}
-    .menu a.active{border-color:var(--border); background: rgba(0,0,0,.28); color:var(--text)}
-
-    .menu-toggle{
-      display:none;
-      appearance:none;
-      border:1px solid var(--border);
-      background:rgba(0,0,0,.30);
+    .menu a:hover,
+    .menu a.active{
+      border-color:var(--border);
+      background: rgba(0,0,0,.30);
       color:var(--text);
-      width:46px;
-      height:46px;
-      border-radius:14px;
-      cursor:pointer;
-      align-items:center;
-      justify-content:center;
-      padding:0;
     }
-    .menu-toggle svg{width:22px;height:22px}
 
-    /* BOTTONI */
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:12px 14px;border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(0,0,0,.25);
-      text-decoration:none;font-weight:800;
-    }
-    .btn:hover{background: rgba(0,0,0,.38)}
-
-    /* HERO */
     .hero{
-      min-height:100svh;
       position:relative;
-      display:grid;
-      place-items:center;
-      padding:110px 16px 36px;
+      min-height:92svh;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:132px 0 70px;
       overflow:hidden;
     }
-
     .hero::before{
       content:"";
       position:absolute;inset:0;
       background-image:url("assets/hero.jpeg");
       background-size:cover;
       background-position:50% 70%;
-      transform: scale(1.02);
-      pointer-events:none;
+      transform:scale(1.02);
     }
     .hero::after{
       content:"";
       position:absolute;inset:0;
       background:
-        radial-gradient(900px 520px at 50% 58%, rgba(0,0,0,.10), rgba(0,0,0,.50) 62%, rgba(0,0,0,.65)),
-        linear-gradient(to bottom, rgba(0,0,0,.20), rgba(0,0,0,.30));
-      pointer-events:none;
+        linear-gradient(to bottom, rgba(7,10,14,.60) 0%, rgba(7,10,14,.20) 28%, rgba(7,10,14,.20) 62%, rgba(7,10,14,.72) 100%),
+        radial-gradient(900px 540px at 50% 40%, rgba(255,255,255,.03), rgba(0,0,0,.18) 50%, rgba(0,0,0,.40));
     }
 
-    /* CARD */
+    .hero-content{
+      position:relative; z-index:2;
+      width:min(1120px, calc(100% - 28px));
+      display:flex; justify-content:center;
+    }
     .card{
-      position:relative;
-      z-index:2;
-      width:min(820px, 100%);
-      padding:26px 22px;
+      width:min(760px, 100%);
+      text-align:center;
+      padding:30px 26px;
       border-radius:var(--radius);
       border:1px solid var(--border);
-      background: var(--glass);
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-      text-align:center;
-      transform:none;
+      background:var(--glass);
+      box-shadow:0 18px 60px rgba(0,0,0,.28);
+      backdrop-filter: blur(8px);
     }
-    @media (min-width:900px){
-      .card{ transform: translateY(-30px); }
-    }
-
     .kicker{
       display:inline-block;
       font-weight:800;
@@ -138,169 +117,149 @@
       letter-spacing:.9px;
       text-transform:uppercase;
       color:var(--muted);
-      padding:10px 14px;
+      padding:10px 16px;
       border-radius:999px;
       border:1px solid var(--border);
-      background: rgba(0,0,0,.25);
+      background: rgba(0,0,0,.24);
     }
-    h1{margin:14px 0 8px;font-size:54px;letter-spacing:-.8px;line-height:1.02}
-    @media (max-width:560px){h1{font-size:40px}}
-    .sub{margin:0 auto 18px;max-width:55ch;color:var(--muted);font-size:16px}
+    h1{
+      margin:16px 0 10px;
+      font-size:56px;
+      line-height:1.02;
+      letter-spacing:-1px;
+    }
+    .sub{
+      margin:0 auto 22px;
+      max-width:34ch;
+      color:var(--muted);
+      font-size:20px;
+      line-height:1.4;
+    }
+    .cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:14px 22px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.88);
+      background: rgba(255,255,255,.92);
+      color:#0b0c10;
+      text-decoration:none;font-weight:800;
+      min-width:280px;
+    }
+    .mini{margin-top:16px;color:rgba(255,255,255,.72);font-size:13px}
 
+    .countdown-section{
+      position:relative;
+      z-index:3;
+      margin-top:-24px;
+      padding:0 0 64px;
+    }
     .countdown-wrap{
-      margin:20px auto 22px;
-      width:min(640px, 100%);
-      padding:18px;
-      border-radius:20px;
+      width:min(920px, calc(100% - 28px));
+      margin:0 auto;
+      padding:22px;
+      border-radius:24px;
       border:1px solid var(--border);
       background:var(--glass-strong);
-      backdrop-filter: blur(6px);
+      box-shadow:0 18px 60px rgba(0,0,0,.24);
+      backdrop-filter: blur(10px);
+      text-align:center;
+    }
+    .countdown-headline{
+      margin:0 0 6px;
+      font-size:30px;
+      font-weight:800;
+      letter-spacing:-.4px;
     }
     .countdown-title{
-      margin:0 0 14px;
+      margin:0 0 18px;
       font-size:15px;
-      font-weight:700;
       color:var(--muted);
     }
     .countdown{
       display:grid;
       grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:12px;
+      gap:14px;
     }
     .countdown-item{
       border:1px solid var(--border);
-      border-radius:16px;
-      padding:14px 10px;
-      background:rgba(255,255,255,.06);
+      border-radius:18px;
+      padding:18px 10px;
+      background:rgba(255,255,255,.05);
     }
     .countdown-value{
       display:block;
-      font-size:34px;
+      font-size:40px;
       line-height:1;
       font-weight:800;
-      letter-spacing:-.6px;
+      letter-spacing:-.8px;
     }
     .countdown-label{
       display:block;
-      margin-top:6px;
+      margin-top:8px;
       font-size:12px;
       text-transform:uppercase;
-      letter-spacing:.8px;
+      letter-spacing:.9px;
       color:var(--muted);
     }
     .countdown-note{
-      margin:12px 0 0;
+      margin:16px 0 0;
       font-size:13px;
       color:rgba(255,255,255,.68);
     }
 
-    .cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-    .cta .btn.primary{
-      background: rgba(255,255,255,.92);
-      color:#0b0c10;
-      border-color: rgba(255,255,255,.92);
+    @media (max-width:900px){
+      .nav-inner{flex-direction:column; align-items:stretch; gap:12px}
+      .brand{text-align:left}
+      .menu{justify-content:center}
+      .hero{padding-top:170px}
+      h1{font-size:46px}
+      .sub{font-size:18px}
     }
-    .cta .btn.primary:hover{background:#fff}
 
-    .mini{margin-top:18px;color:rgba(255,255,255,.70);font-size:12px}
-
-    /* TABLET / MOBILE */
-    @media (max-width:860px){
-      .menu-toggle{
-        display:inline-flex;
-      }
-      .menu{
-        position:absolute;
-        top:calc(100% + 10px);
-        right:0;
-        left:0;
-        display:none;
-        flex-direction:column;
-        gap:8px;
-        padding:12px;
-        border-radius:18px;
-        border:1px solid var(--border);
-        background:rgba(10,12,16,.88);
-        backdrop-filter: blur(12px);
-        box-shadow:0 18px 40px rgba(0,0,0,.35);
-      }
-      .menu.open{display:flex}
+    @media (max-width:560px){
+      .nav{padding:10px 10px}
+      .nav-inner{gap:10px}
+      .brand{font-size:16px}
+      .menu{gap:8px; justify-content:flex-start}
       .menu a{
-        width:100%;
-        text-align:center;
-        padding:12px 14px;
-        background:rgba(255,255,255,.03);
+        font-size:13px;
+        padding:9px 12px;
       }
       .hero{
-        padding-top:120px;
+        min-height:auto;
+        padding:200px 0 300px;
       }
-    }
-
-    /* MOBILE FIX */
-    @media (max-width:560px){
-      .hero{ padding:110px 14px 20px; }
-
+      .hero::before{background-position:50% 74%}
+      .hero-content{align-items:flex-start}
       .card{
-        width:min(720px, 94%);
-        padding:16px 14px;
-        border-radius:16px;
-      }
-
-      .kicker{ font-size:11px; padding:7px 10px; }
-
-      h1{ font-size:34px; margin:10px 0 6px; }
-
-      .sub{
-        font-size:14px;
-        margin:0 auto 12px;
-        line-height:1.35;
-      }
-
-      .countdown-wrap{
-        margin:16px auto 18px;
-        padding:14px;
-        border-radius:16px;
-      }
-      .countdown{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:10px;
-      }
-      .countdown-item{padding:12px 8px}
-      .countdown-value{font-size:28px}
-      .countdown-label{font-size:11px}
-      .countdown-note{font-size:12px}
-
-      .cta{
-        flex-direction:column;
-        align-items:stretch;
-        gap:10px;
-        margin-top:8px;
-      }
-      .cta .btn{
         width:100%;
-        padding:11px 12px;
+        padding:20px 16px;
+        border-radius:18px;
       }
-
-      .mini{ margin-top:10px; font-size:12px; }
-
-      .hero::before{ background-position:50% 78%; }
+      .kicker{font-size:11px; padding:8px 12px}
+      h1{font-size:34px; margin:12px 0 8px}
+      .sub{font-size:15px; margin-bottom:16px}
+      .btn{width:100%; min-width:0; padding:13px 18px}
+      .countdown-section{
+        margin-top:0;
+        padding:18px 0 42px;
+      }
+      .countdown-wrap{
+        width:min(100%, calc(100% - 20px));
+        padding:18px 14px;
+        border-radius:20px;
+      }
+      .countdown-headline{font-size:24px}
+      .countdown{grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px}
+      .countdown-item{padding:14px 8px}
+      .countdown-value{font-size:32px}
     }
   </style>
 </head>
-
 <body>
   <header class="nav">
     <div class="nav-inner">
       <div class="brand">Silvia & Alfonso</div>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="Apri il menu" aria-expanded="false" aria-controls="siteMenu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path d="M4 7h16"></path>
-          <path d="M4 12h16"></path>
-          <path d="M4 17h16"></path>
-        </svg>
-      </button>
-
       <nav class="menu" id="siteMenu">
         <a class="active" href="index.html">Home</a>
         <a href="evento.html">Evento</a>
@@ -314,18 +273,30 @@
     </div>
   </header>
 
-  <main class="hero">
-    <section class="card" aria-label="Intro">
-      <span class="kicker">1 Agosto 2026 • Salerno &amp; Costiera Amalfitana</span>
-      <h1>Silvia e Alfonso</h1>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <section class="card" aria-label="Intro">
+          <span class="kicker">1 Agosto 2026 • Salerno &amp; Costiera Amalfitana</span>
+          <h1>Silvia e Alfonso</h1>
+          <p class="sub">
+            Siamo felici di festeggiare con voi il nostro matrimonio.<br>
+            Qui trovate tutte le informazioni utili sulla giornata.
+          </p>
+          <div class="cta">
+            <a class="btn"
+               href="https://docs.google.com/forms/d/e/1FAIpQLSev_wvk0_GFHD54z9lt7cpu3dRcEWDPRREAroY-0sifc5AQew/viewform?usp=header"
+               target="_blank" rel="noreferrer">Conferma la tua presenza</a>
+          </div>
+          <p class="mini">Scorri sotto per vedere il countdown.</p>
+        </section>
+      </div>
+    </section>
 
-      <p class="sub">
-        Siamo felici di festeggiare con voi il nostro matrimonio!<br>
-        Qui trovate tutte le info utili sulla giornata.
-      </p>
-
-      <section class="countdown-wrap" aria-label="Conto alla rovescia verso il matrimonio">
-        <p class="countdown-title">Mancano al matrimonio</p>
+    <section class="countdown-section" aria-label="Conto alla rovescia verso il matrimonio">
+      <div class="countdown-wrap">
+        <p class="countdown-headline">Mancano al matrimonio</p>
+        <p class="countdown-title">Aggiornamento automatico in tempo reale</p>
         <div class="countdown" id="countdown" role="timer" aria-live="polite">
           <div class="countdown-item">
             <span class="countdown-value" id="days">--</span>
@@ -344,16 +315,8 @@
             <span class="countdown-label">Secondi</span>
           </div>
         </div>
-        <p class="countdown-note" id="countdownNote">Aggiornamento automatico in tempo reale.</p>
-      </section>
-
-      <div class="cta">
-        <a class="btn primary"
-           href="https://docs.google.com/forms/d/e/1FAIpQLSev_wvk0_GFHD54z9lt7cpu3dRcEWDPRREAroY-0sifc5AQew/viewform?usp=header"
-           target="_blank" rel="noreferrer">Conferma la tua presenza</a>
+        <p class="countdown-note" id="countdownNote">Ci siamo quasi.</p>
       </div>
-
-      <p class="mini">Salva questa pagina: qui pubblicheremo tutte le informazioni utili.</p>
     </section>
   </main>
 
@@ -396,21 +359,6 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-
-    const menuToggle = document.getElementById('menuToggle');
-    const siteMenu = document.getElementById('siteMenu');
-
-    menuToggle.addEventListener('click', () => {
-      const isOpen = siteMenu.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-    });
-
-    siteMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        siteMenu.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
   </script>
 </body>
 </html>
