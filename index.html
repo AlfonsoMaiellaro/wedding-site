@@ -306,11 +306,20 @@
       }
 
       .countdown-bar{
-        font-size:15px;
-        padding:9px 14px;
-        margin-bottom:28px;
-        transform: translateY(-78);
-      }
+       position:absolute;
+      top:180px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:3;
+
+      font-size:15px;
+      padding:9px 14px;
+      margin-bottom:0;
+
+      display:inline-block;
+      max-width:90vw;
+      width:max-content;
+    }
 
       .card{
         width:min(720px, 90%);
