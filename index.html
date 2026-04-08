@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Silvia & Alfonso — 1 Agosto 2026</title>
-  <meta name="description" content="Sito del matrimonio di Silvia e Alfonso: evento, programma, location, conferma presenza, FAQ e regali." />
 
   <style>
     :root{
@@ -13,75 +12,55 @@
       --muted:rgba(255,255,255,.78);
       --glass: rgba(10,12,16,.40);
       --border: rgba(255,255,255,.18);
-      --accent2:rgba(255,255,255,.86);
       --radius:18px;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0;
-      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      font-family:system-ui;
       color:var(--text);
       background:var(--bg);
-      overflow-x:hidden;
     }
-    a{color:inherit}
 
     /* NAV */
     .nav{
       position:fixed;top:0;left:0;right:0;z-index:50;
-      display:flex;align-items:center;justify-content:center;
-      padding:14px 16px;
-      background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,0));
-      backdrop-filter: blur(8px);
+      display:flex;justify-content:center;
+      padding:14px;
+      background:linear-gradient(to bottom, rgba(0,0,0,.55), transparent);
     }
+
     .nav-inner{
-      width:min(1100px, 100%);
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      width:min(1100px,100%);
+      display:flex;justify-content:space-between;gap:12px;
     }
+
     .brand{
       font-weight:800;
-      letter-spacing:.2px;
-      flex:0 0 auto;
     }
+
     .menu{
       display:flex;
-      gap:10px;
       flex-wrap:wrap;
+      gap:10px;
       justify-content:flex-end;
     }
+
     .menu a{
-      text-decoration:none;
-      font-weight:700;
       font-size:13px;
       padding:10px 12px;
       border-radius:999px;
-      border:1px solid transparent;
-      color:var(--accent2);
-      white-space:nowrap;
+      text-decoration:none;
     }
-    .menu a:hover{border-color:var(--border); background: rgba(0,0,0,.18); color:var(--text)}
-    .menu a.active{border-color:var(--border); background: rgba(0,0,0,.28); color:var(--text)}
-
-    /* BOTTONI */
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:12px 14px;border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(0,0,0,.25);
-      text-decoration:none;font-weight:800;
-    }
-    .btn:hover{background: rgba(0,0,0,.38)}
 
     /* HERO */
     .hero{
       min-height:100svh;
-      position:relative;
       display:grid;
       place-items:center;
       padding:110px 16px 36px;
-      overflow:hidden;
+      position:relative;
       text-align:center;
     }
 
@@ -92,253 +71,137 @@
     .hero::before{
       content:"";
       position:absolute;inset:0;
-      background-image:url("assets/hero.jpeg");
-      background-size:cover;
-      background-position:50% 70%;
-      transform: scale(1.02);
-      pointer-events:none;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;inset:0;
-      background:
-        radial-gradient(900px 520px at 50% 58%, rgba(0,0,0,.10), rgba(0,0,0,.50) 62%, rgba(0,0,0,.65)),
-        linear-gradient(to bottom, rgba(0,0,0,.20), rgba(0,0,0,.30));
-      pointer-events:none;
+      background:url("assets/hero.jpeg") center/cover;
     }
 
-    /* COUNTDOWN STRIP */
+    /* COUNTDOWN */
     .countdown-bar{
       position:relative;
       z-index:2;
-      margin-bottom:40px;
-      display:inline-block;
-      padding:10px 18px;
-      font-weight:800;
       font-size:20px;
-      line-height:1.2;
+      padding:10px 18px;
+      margin-bottom:40px;
       border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(0,0,0,.42);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 10px 24px rgba(0,0,0,.20);
-      max-width:min(92vw, 520px);
-      transform: translateY(-35px);
+      background:rgba(0,0,0,.4);
+      transform:translateY(-35px);
     }
 
     /* CARD */
     .card{
       position:relative;
       z-index:2;
-      width:min(820px, 100%);
-      padding:26px 22px;
-      border-radius:var(--radius);
-      border:1px solid var(--border);
-      background: var(--glass);
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-      text-align:center;
-      transform:none;
-    }
-    @media (min-width:900px){
-      .card{ transform: translateY(-40px); }
+      padding:26px;
+      border-radius:18px;
+      background:rgba(0,0,0,.4);
     }
 
-    .kicker{
-      display:inline-block;
-      font-weight:800;
-      font-size:13px;
-      letter-spacing:.9px;
-      text-transform:uppercase;
-      color:var(--muted);
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(0,0,0,.25);
-    }
-
-    h1{
-      margin:14px 0 8px;
-      font-size:54px;
-      letter-spacing:-.8px;
-      line-height:1.02;
-    }
-
-    .sub{
-      margin:0 auto 18px;
-      max-width:55ch;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.4;
-    }
-
-    .cta{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .cta .btn.primary{
-      background: rgba(255,255,255,.92);
-      color:#0b0c10;
-      border-color: rgba(255,255,255,.92);
-    }
-    .cta .btn.primary:hover{background:#fff}
-
-    /* MOBILE */
     @media (max-width:560px){
-      .nav{
-        padding:12px 14px;
-      }
-
-      .nav-inner{
-        align-items:flex-start;
-        justify-content:space-between;
-        gap:14px;
-      }
-
       .brand{
-        font-size:16px;
-        min-width:110px;
-        line-height:1.1;
         margin-top:28px;
-        text-align:left;
-      }
-
-      .menu{
-        gap:8px 10px;
-        justify-content:flex-end;
-        align-content:flex-start;
-        flex:1;
-      }
-
-      .menu a{
-        font-size:15px;
-        padding:9px 12px;
-      }
-
-      .hero{
-        padding-bottom:18px;
-      }
-
-      .countdown-bar{
-        font-size:17px;
-        padding:10px 16px;
-        margin-bottom:8px;
       }
 
       .card{
-        width:min(720px, 92%);
-        padding:14px 14px;
-        border-radius:16px;
-        transform: translateY(-150px);
+        transform:translateY(-150px);
+      }
+    }
+
+    /* ✅ FIX TELEFONI PICCOLI */
+    @media (max-width:430px){
+
+      .nav-inner{
+        gap:10px;
       }
 
-      .kicker{
-        font-size:11px;
-        padding:7px 10px;
+      .brand{
+        font-size:15px;
+        min-width:96px;
+        margin-top:16px;
+      }
+
+      .menu a{
+        font-size:14px;
+        padding:8px 10px;
+      }
+
+      .hero{
+        padding-top:205px;
+      }
+
+      .countdown-bar{
+        font-size:15px;
+        padding:9px 14px;
+        transform: translateY(-10px);
+        margin-bottom:10px;
+      }
+
+      .card{
+        transform: translateY(-105px);
       }
 
       h1{
-        font-size:34px;
-        margin:10px 0 6px;
-      }
-
-      .sub{
-        font-size:14px;
-        margin:0 auto 10px;
-        line-height:1.35;
-      }
-
-      .cta{
-        flex-direction:column;
-        align-items:stretch;
-        gap:10px;
-        margin-top:8px;
-      }
-
-      .cta .btn{
-        width:100%;
-        padding:11px 12px;
-        font-size:15px;
-      }
-
-      .hero::before{
-        background-position:50% 82%;
+        font-size:32px;
       }
     }
+
   </style>
 </head>
 
 <body>
-  <header class="nav">
-    <div class="nav-inner">
-      <div class="brand">Silvia &<br> Alfonso</div>
 
-      <nav class="menu">
-        <a class="active" href="index.html">Home</a>
-        <a href="evento.html">Evento</a>
-        <a href="programma.html">Programma</a>
-        <a href="album.html">Album</a>
-        <a href="rsvp.html">RSVP</a>
-        <a href="faq.html">FAQ</a>
-        <a href="regali.html">Regali</a>
-        <a href="contatti.html">Contatti</a>
-      </nav>
-    </div>
-  </header>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">Silvia &<br> Alfonso</div>
 
-  <main class="hero">
-    <div class="countdown-bar" id="countdownBar">
-      Mancano <span id="d">--</span>g •
-      <span id="h">--</span>h •
-      <span id="m">--</span>m •
-      <span id="s">--</span>s
-    </div>
+    <nav class="menu">
+      <a href="#">Home</a>
+      <a href="#">Evento</a>
+      <a href="#">Programma</a>
+      <a href="#">Album</a>
+      <a href="#">RSVP</a>
+      <a href="#">FAQ</a>
+      <a href="#">Regali</a>
+      <a href="#">Contatti</a>
+    </nav>
+  </div>
+</header>
 
-    <section class="card" aria-label="Intro">
-      <span class="kicker">1 Agosto 2026 • Salerno &amp; Costiera Amalfitana</span>
-      <h1>Silvia e Alfonso</h1>
+<main class="hero">
 
-      <p class="sub">
-        Siamo felici di festeggiare con voi il nostro matrimonio!<br>
-        Qui trovate tutte le info utili sulla giornata.
-      </p>
+  <div class="countdown-bar" id="countdownBar">
+    Mancano <span id="d">--</span>g •
+    <span id="h">--</span>h •
+    <span id="m">--</span>m •
+    <span id="s">--</span>s
+  </div>
 
-      <div class="cta">
-        <a class="btn primary"
-           href="https://docs.google.com/forms/d/e/1FAIpQLSev_wvk0_GFHD54z9lt7cpu3dRcEWDPRREAroY-0sifc5AQew/viewform?usp=header"
-           target="_blank" rel="noreferrer">
-          Conferma la tua presenza
-        </a>
-      </div>
-    </section>
-  </main>
+  <section class="card">
+    <h1>Silvia e Alfonso</h1>
+    <p>Siamo felici di festeggiare con voi il nostro matrimonio!</p>
+  </section>
 
-  <script>
-    const weddingDate = new Date('2026-08-01T16:00:00+02:00').getTime();
+</main>
 
-    function updateCountdown(){
-      const now = new Date().getTime();
-      const diff = weddingDate - now;
+<script>
+const weddingDate = new Date('2026-08-01T16:00:00+02:00').getTime();
 
-      if(diff <= 0){
-        document.getElementById('countdownBar').innerHTML = "È il grande giorno! 🎉";
-        return;
-      }
+function updateCountdown(){
+  const now = new Date().getTime();
+  const diff = weddingDate - now;
 
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const m = Math.floor((diff / (1000 * 60)) % 60);
-      const s = Math.floor((diff / 1000) % 60);
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff / (1000*60*60)) % 24);
+  const m = Math.floor((diff / (1000*60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
 
-      document.getElementById("d").textContent = d;
-      document.getElementById("h").textContent = h;
-      document.getElementById("m").textContent = m;
-      document.getElementById("s").textContent = s;
-    }
+  document.getElementById("d").textContent = d;
+  document.getElementById("h").textContent = h;
+  document.getElementById("m").textContent = m;
+  document.getElementById("s").textContent = s;
+}
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+
 </body>
 </html>
