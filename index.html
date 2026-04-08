@@ -12,6 +12,7 @@
       --text:#ffffff;
       --muted:rgba(255,255,255,.78);
       --glass: rgba(10,12,16,.40);
+      --glass-strong: rgba(10,12,16,.62);
       --border: rgba(255,255,255,.18);
       --accent2:rgba(255,255,255,.86);
       --radius:18px;
@@ -19,6 +20,7 @@
 
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
@@ -39,9 +41,12 @@
     .nav-inner{
       width:min(1100px, 100%);
       display:flex;align-items:center;justify-content:space-between;gap:12px;
+      position:relative;
     }
     .brand{font-weight:800;letter-spacing:.2px}
-    .menu{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .menu{
+      display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;
+    }
     .menu a{
       text-decoration:none;
       font-weight:700;
@@ -54,6 +59,22 @@
     }
     .menu a:hover{border-color:var(--border); background: rgba(0,0,0,.18); color:var(--text)}
     .menu a.active{border-color:var(--border); background: rgba(0,0,0,.28); color:var(--text)}
+
+    .menu-toggle{
+      display:none;
+      appearance:none;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.30);
+      color:var(--text);
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+    }
+    .menu-toggle svg{width:22px;height:22px}
 
     /* BOTTONI */
     .btn{
@@ -71,12 +92,8 @@
       position:relative;
       display:grid;
       place-items:center;
-      padding:110px 16px 36px; /* desktop */
+      padding:110px 16px 36px;
       overflow:hidden;
-    }
-    /* ✅ MOBILE: spazio sopra per menu su 2 righe */
-    @media (max-width:700px){
-      .hero{ padding-top:155px; }
     }
 
     .hero::before{
@@ -111,7 +128,7 @@
       transform:none;
     }
     @media (min-width:900px){
-      .card{ transform: translateY(-40px); }
+      .card{ transform: translateY(-30px); }
     }
 
     .kicker{
@@ -130,6 +147,53 @@
     @media (max-width:560px){h1{font-size:40px}}
     .sub{margin:0 auto 18px;max-width:55ch;color:var(--muted);font-size:16px}
 
+    .countdown-wrap{
+      margin:20px auto 22px;
+      width:min(640px, 100%);
+      padding:18px;
+      border-radius:20px;
+      border:1px solid var(--border);
+      background:var(--glass-strong);
+      backdrop-filter: blur(6px);
+    }
+    .countdown-title{
+      margin:0 0 14px;
+      font-size:15px;
+      font-weight:700;
+      color:var(--muted);
+    }
+    .countdown{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:12px;
+    }
+    .countdown-item{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:14px 10px;
+      background:rgba(255,255,255,.06);
+    }
+    .countdown-value{
+      display:block;
+      font-size:34px;
+      line-height:1;
+      font-weight:800;
+      letter-spacing:-.6px;
+    }
+    .countdown-label{
+      display:block;
+      margin-top:6px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+      color:var(--muted);
+    }
+    .countdown-note{
+      margin:12px 0 0;
+      font-size:13px;
+      color:rgba(255,255,255,.68);
+    }
+
     .cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
     .cta .btn.primary{
       background: rgba(255,255,255,.92);
@@ -140,15 +204,46 @@
 
     .mini{margin-top:18px;color:rgba(255,255,255,.70);font-size:12px}
 
-    /* ✅ MOBILE FIX: card più compatta e un po' più in alto */
+    /* TABLET / MOBILE */
+    @media (max-width:860px){
+      .menu-toggle{
+        display:inline-flex;
+      }
+      .menu{
+        position:absolute;
+        top:calc(100% + 10px);
+        right:0;
+        left:0;
+        display:none;
+        flex-direction:column;
+        gap:8px;
+        padding:12px;
+        border-radius:18px;
+        border:1px solid var(--border);
+        background:rgba(10,12,16,.88);
+        backdrop-filter: blur(12px);
+        box-shadow:0 18px 40px rgba(0,0,0,.35);
+      }
+      .menu.open{display:flex}
+      .menu a{
+        width:100%;
+        text-align:center;
+        padding:12px 14px;
+        background:rgba(255,255,255,.03);
+      }
+      .hero{
+        padding-top:120px;
+      }
+    }
+
+    /* MOBILE FIX */
     @media (max-width:560px){
-      .hero{ padding-bottom:18px; }
+      .hero{ padding:110px 14px 20px; }
 
       .card{
-        width:min(720px, 92%);
-        padding:14px 14px;
+        width:min(720px, 94%);
+        padding:16px 14px;
         border-radius:16px;
-        transform: translateY(-48px);
       }
 
       .kicker{ font-size:11px; padding:7px 10px; }
@@ -157,9 +252,23 @@
 
       .sub{
         font-size:14px;
-        margin:0 auto 10px;
+        margin:0 auto 12px;
         line-height:1.35;
       }
+
+      .countdown-wrap{
+        margin:16px auto 18px;
+        padding:14px;
+        border-radius:16px;
+      }
+      .countdown{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:10px;
+      }
+      .countdown-item{padding:12px 8px}
+      .countdown-value{font-size:28px}
+      .countdown-label{font-size:11px}
+      .countdown-note{font-size:12px}
 
       .cta{
         flex-direction:column;
@@ -174,7 +283,6 @@
 
       .mini{ margin-top:10px; font-size:12px; }
 
-      /* opzionale: inquadratura mobile */
       .hero::before{ background-position:50% 78%; }
     }
   </style>
@@ -184,7 +292,16 @@
   <header class="nav">
     <div class="nav-inner">
       <div class="brand">Silvia & Alfonso</div>
-      <nav class="menu">
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri il menu" aria-expanded="false" aria-controls="siteMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 7h16"></path>
+          <path d="M4 12h16"></path>
+          <path d="M4 17h16"></path>
+        </svg>
+      </button>
+
+      <nav class="menu" id="siteMenu">
         <a class="active" href="index.html">Home</a>
         <a href="evento.html">Evento</a>
         <a href="programma.html">Programma</a>
@@ -207,17 +324,93 @@
         Qui trovate tutte le info utili sulla giornata.
       </p>
 
+      <section class="countdown-wrap" aria-label="Conto alla rovescia verso il matrimonio">
+        <p class="countdown-title">Mancano al matrimonio</p>
+        <div class="countdown" id="countdown" role="timer" aria-live="polite">
+          <div class="countdown-item">
+            <span class="countdown-value" id="days">--</span>
+            <span class="countdown-label">Giorni</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="hours">--</span>
+            <span class="countdown-label">Ore</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="minutes">--</span>
+            <span class="countdown-label">Minuti</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="seconds">--</span>
+            <span class="countdown-label">Secondi</span>
+          </div>
+        </div>
+        <p class="countdown-note" id="countdownNote">Aggiornamento automatico in tempo reale.</p>
+      </section>
+
       <div class="cta">
         <a class="btn primary"
            href="https://docs.google.com/forms/d/e/1FAIpQLSev_wvk0_GFHD54z9lt7cpu3dRcEWDPRREAroY-0sifc5AQew/viewform?usp=header"
            target="_blank" rel="noreferrer">Conferma la tua presenza</a>
       </div>
+
+      <p class="mini">Salva questa pagina: qui pubblicheremo tutte le informazioni utili.</p>
     </section>
   </main>
+
+  <script>
+    const weddingDate = new Date('2026-08-01T00:00:00+02:00').getTime();
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const noteEl = document.getElementById('countdownNote');
+
+    function pad(value) {
+      return String(value).padStart(2, '0');
+    }
+
+    function updateCountdown() {
+      const now = Date.now();
+      const distance = weddingDate - now;
+
+      if (distance <= 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        noteEl.textContent = 'È arrivato il grande giorno!';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.textContent = days;
+      hoursEl.textContent = pad(hours);
+      minutesEl.textContent = pad(minutes);
+      secondsEl.textContent = pad(seconds);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const menuToggle = document.getElementById('menuToggle');
+    const siteMenu = document.getElementById('siteMenu');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = siteMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    siteMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        siteMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
