@@ -11,14 +11,16 @@
       --bg:#0b0c10;
       --text:#ffffff;
       --muted:rgba(255,255,255,.78);
-      --glass: rgba(10,12,16,.40);
-      --border: rgba(255,255,255,.18);
-      --accent2:rgba(255,255,255,.86);
+      --glass:rgba(10,12,16,.40);
+      --border:rgba(255,255,255,.18);
+      --accent2:rgba(255,255,255,.90);
       --radius:18px;
+      --nav-h:88px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
       font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
@@ -26,22 +28,46 @@
       background:var(--bg);
       overflow-x:hidden;
     }
+
     a{color:inherit}
 
     /* NAV */
     .nav{
-      position:fixed;top:0;left:0;right:0;z-index:50;
-      display:flex;align-items:center;justify-content:center;
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:50;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       padding:14px 16px;
       background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,0));
-      backdrop-filter: blur(8px);
+      backdrop-filter:blur(8px);
     }
+
     .nav-inner{
       width:min(1100px, 100%);
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
     }
-    .brand{font-weight:800;letter-spacing:.2px}
-    .menu{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+
+    .brand{
+      font-weight:800;
+      letter-spacing:.2px;
+      line-height:1.05;
+      flex:0 0 auto;
+      padding-top:2px;
+    }
+
+    .menu{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+
     .menu a{
       text-decoration:none;
       font-weight:700;
@@ -52,18 +78,18 @@
       color:var(--accent2);
       white-space:nowrap;
     }
-    .menu a:hover{border-color:var(--border); background: rgba(0,0,0,.18); color:var(--text)}
-    .menu a.active{border-color:var(--border); background: rgba(0,0,0,.28); color:var(--text)}
 
-    /* BOTTONI */
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:12px 14px;border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(0,0,0,.25);
-      text-decoration:none;font-weight:800;
+    .menu a:hover{
+      border-color:var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
     }
-    .btn:hover{background: rgba(0,0,0,.38)}
+
+    .menu a.active{
+      border-color:var(--border);
+      background:rgba(0,0,0,.28);
+      color:var(--text);
+    }
 
     /* HERO */
     .hero{
@@ -71,33 +97,31 @@
       position:relative;
       display:grid;
       place-items:center;
-      padding:130px 16px 36px;
+      padding:calc(var(--nav-h) + 6px) 16px 18px;
       overflow:hidden;
-    }
-
-    @media (max-width:700px){
-      .hero{ padding-top:185px; }
     }
 
     .hero::before{
       content:"";
-      position:absolute;inset:0;
+      position:absolute;
+      inset:0;
       background-image:url("assets/hero.jpeg");
       background-size:cover;
-      background-position:50% 70%;
-      transform: scale(1.02);
-      pointer-events:none;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;inset:0;
-      background:
-        radial-gradient(900px 520px at 50% 58%, rgba(0,0,0,.10), rgba(0,0,0,.50) 62%, rgba(0,0,0,.65)),
-        linear-gradient(to bottom, rgba(0,0,0,.20), rgba(0,0,0,.30));
+      background-position:50% 74%;
+      transform:scale(1.02);
       pointer-events:none;
     }
 
-    /* STACK countdown + card */
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 520px at 50% 58%, rgba(0,0,0,.08), rgba(0,0,0,.48) 62%, rgba(0,0,0,.65)),
+        linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.30));
+      pointer-events:none;
+    }
+
     .hero-stack{
       position:relative;
       z-index:2;
@@ -105,39 +129,73 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:16px;
-      transform:translateY(-10px);
+      gap:8px;
+      transform:translateY(-34px);
     }
 
+    /* COUNTDOWN */
     .countdown-bar{
-      width:min(760px, calc(100% - 24px));
-      padding:12px 18px;
-      border-radius:999px;
+      width:min(760px, 100%);
+      padding:9px 10px 10px;
+      border-radius:20px;
       border:1px solid var(--border);
-      background: rgba(0,0,0,.28);
-      backdrop-filter: blur(8px);
+      background:rgba(0,0,0,.28);
+      backdrop-filter:blur(8px);
       box-shadow:0 10px 30px rgba(0,0,0,.18);
       text-align:center;
+    }
+
+    .countdown-title{
+      font-size:11px;
       font-weight:800;
-      font-size:14px;
-      letter-spacing:.5px;
+      letter-spacing:1px;
       text-transform:uppercase;
-      color:var(--accent2);
+      color:var(--muted);
+      margin-bottom:7px;
       line-height:1.2;
+    }
+
+    .countdown-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:6px;
+    }
+
+    .countdown-item{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:12px;
+      padding:7px 2px;
+    }
+
+    .countdown-number{
+      display:block;
+      font-size:24px;
+      line-height:1;
+      font-weight:800;
+      letter-spacing:-.5px;
+      color:#fff;
+    }
+
+    .countdown-label{
+      display:block;
+      margin-top:4px;
+      font-size:9px;
+      font-weight:700;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      color:var(--muted);
     }
 
     /* CARD */
     .card{
-      position:relative;
-      z-index:2;
       width:100%;
-      padding:26px 22px;
+      padding:18px 18px;
       border-radius:var(--radius);
       border:1px solid var(--border);
-      background: var(--glass);
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      background:var(--glass);
+      box-shadow:0 18px 60px rgba(0,0,0,.35);
       text-align:center;
-      transform:none;
     }
 
     .kicker{
@@ -150,58 +208,118 @@
       padding:10px 14px;
       border-radius:999px;
       border:1px solid var(--border);
-      background: rgba(0,0,0,.25);
+      background:rgba(0,0,0,.25);
     }
 
     h1{
-      margin:14px 0 8px;
-      font-size:54px;
+      margin:12px 0 8px;
+      font-size:52px;
       letter-spacing:-.8px;
       line-height:1.02;
     }
 
-    @media (max-width:560px){
-      h1{font-size:40px}
-    }
-
     .sub{
-      margin:0 auto 18px;
+      margin:0 auto 16px;
       max-width:55ch;
       color:var(--muted);
       font-size:16px;
+      line-height:1.35;
     }
 
-    .cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .cta{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.25);
+      text-decoration:none;
+      font-weight:800;
+    }
+
+    .btn:hover{
+      background:rgba(0,0,0,.38);
+    }
+
     .cta .btn.primary{
-      background: rgba(255,255,255,.92);
+      background:rgba(255,255,255,.92);
       color:#0b0c10;
-      border-color: rgba(255,255,255,.92);
+      border-color:rgba(255,255,255,.92);
     }
-    .cta .btn.primary:hover{background:#fff}
 
-    .mini{margin-top:18px;color:rgba(255,255,255,.70);font-size:12px}
+    .cta .btn.primary:hover{
+      background:#fff;
+    }
 
-    /* MOBILE */
+    @media (max-width:700px){
+      .menu{
+        gap:8px;
+      }
+
+      .menu a{
+        font-size:12px;
+        padding:8px 10px;
+      }
+
+      .hero-stack{
+        transform:translateY(-28px);
+      }
+
+      h1{
+        font-size:40px;
+      }
+    }
+
     @media (max-width:560px){
       .hero{
-        padding-top:195px;
-        padding-bottom:18px;
+        padding-top:calc(var(--nav-h) + 2px);
+        padding-bottom:14px;
       }
 
       .hero-stack{
         width:min(720px, 92%);
-        gap:12px;
-        transform:translateY(-24px);
+        gap:7px;
+        transform:translateY(-32px);
       }
 
       .countdown-bar{
         width:100%;
-        font-size:12px;
-        padding:10px 12px;
+        padding:8px 9px 9px;
+        border-radius:18px;
+      }
+
+      .countdown-title{
+        font-size:10px;
+        margin-bottom:6px;
+      }
+
+      .countdown-grid{
+        gap:5px;
+      }
+
+      .countdown-item{
+        padding:6px 2px;
+        border-radius:11px;
+      }
+
+      .countdown-number{
+        font-size:22px;
+      }
+
+      .countdown-label{
+        font-size:8px;
+        letter-spacing:.7px;
       }
 
       .card{
-        width:100%;
         padding:14px 14px;
         border-radius:16px;
       }
@@ -219,7 +337,6 @@
       .sub{
         font-size:14px;
         margin:0 auto 10px;
-        line-height:1.35;
       }
 
       .cta{
@@ -234,37 +351,33 @@
         padding:11px 12px;
       }
 
-      .mini{
-        margin-top:10px;
-        font-size:12px;
-      }
-
       .hero::before{
-        background-position:50% 78%;
+        background-position:50% 76%;
       }
     }
 
-    /* SCHERMI PICCOLI TIPO S25 "LISCIO" */
     @media (max-width:430px){
-      .hero{ padding-top:208px; }
-
-      .countdown-bar{
+      .menu a{
         font-size:11px;
-        padding:9px 10px;
+        padding:7px 9px;
       }
 
-      .menu a{
-        font-size:12px;
-        padding:8px 10px;
+      .countdown-number{
+        font-size:20px;
+      }
+
+      .countdown-label{
+        font-size:7.5px;
       }
     }
   </style>
 </head>
 
 <body>
-  <header class="nav">
+  <header class="nav" id="site-nav">
     <div class="nav-inner">
       <div class="brand">Silvia & Alfonso</div>
+
       <nav class="menu">
         <a class="active" href="index.html">Home</a>
         <a href="evento.html">Evento</a>
@@ -280,12 +393,33 @@
 
   <main class="hero">
     <div class="hero-stack">
-      <div class="countdown-bar" aria-live="polite">
-        <span id="countdown-text">Mancano ... giorni al matrimonio</span>
-      </div>
+
+      <section class="countdown-bar" aria-label="Countdown matrimonio" aria-live="polite">
+        <div class="countdown-title" id="countdown-title">Mancano ... giorni al matrimonio</div>
+
+        <div class="countdown-grid">
+          <div class="countdown-item">
+            <span class="countdown-number" id="days">0</span>
+            <span class="countdown-label">Giorni</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="hours">00</span>
+            <span class="countdown-label">Ore</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="minutes">00</span>
+            <span class="countdown-label">Minuti</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number" id="seconds">00</span>
+            <span class="countdown-label">Secondi</span>
+          </div>
+        </div>
+      </section>
 
       <section class="card" aria-label="Intro">
         <span class="kicker">1 Agosto 2026 • Salerno &amp; Costiera Amalfitana</span>
+
         <h1>Silvia e Alfonso</h1>
 
         <p class="sub">
@@ -296,35 +430,75 @@
         <div class="cta">
           <a class="btn primary"
              href="https://docs.google.com/forms/d/e/1FAIpQLSev_wvk0_GFHD54z9lt7cpu3dRcEWDPRREAroY-0sifc5AQew/viewform?usp=header"
-             target="_blank" rel="noreferrer">Conferma la tua presenza</a>
+             target="_blank" rel="noreferrer">
+            Conferma la tua presenza
+          </a>
         </div>
       </section>
+
     </div>
   </main>
 
   <script>
     (function () {
-      const countdownEl = document.getElementById("countdown-text");
-      const targetDate = new Date(2026, 7, 1); // 1 agosto 2026
+      const nav = document.getElementById("site-nav");
+      const titleEl = document.getElementById("countdown-title");
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+
+      const targetDate = new Date(2026, 7, 1, 0, 0, 0); // 1 agosto 2026
+
+      function setNavHeight() {
+        document.documentElement.style.setProperty("--nav-h", nav.offsetHeight + "px");
+      }
+
+      function pad(value) {
+        return String(value).padStart(2, "0");
+      }
 
       function updateCountdown() {
         const now = new Date();
-        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        const diffDays = Math.round((targetDate - today) / (1000 * 60 * 60 * 24));
+        let diff = targetDate.getTime() - now.getTime();
 
-        if (diffDays > 1) {
-          countdownEl.textContent = `Mancano ${diffDays} giorni al matrimonio`;
-        } else if (diffDays === 1) {
-          countdownEl.textContent = "Manca 1 giorno al matrimonio";
-        } else if (diffDays === 0) {
-          countdownEl.textContent = "Oggi è il grande giorno!";
-        } else {
-          countdownEl.textContent = "Silvia e Alfonso si sono sposati!";
+        if (diff <= 0) {
+          titleEl.textContent = "Oggi è il grande giorno!";
+          daysEl.textContent = "0";
+          hoursEl.textContent = "00";
+          minutesEl.textContent = "00";
+          secondsEl.textContent = "00";
+          return;
         }
+
+        const totalSeconds = Math.floor(diff / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        titleEl.textContent = days === 1
+          ? "Manca 1 giorno al matrimonio"
+          : `Mancano ${days} giorni al matrimonio`;
+
+        daysEl.textContent = days;
+        hoursEl.textContent = pad(hours);
+        minutesEl.textContent = pad(minutes);
+        secondsEl.textContent = pad(seconds);
       }
 
+      setNavHeight();
       updateCountdown();
-      setInterval(updateCountdown, 60 * 60 * 1000);
+
+      window.addEventListener("load", setNavHeight);
+      window.addEventListener("resize", setNavHeight);
+
+      if ("ResizeObserver" in window) {
+        const ro = new ResizeObserver(setNavHeight);
+        ro.observe(nav);
+      }
+
+      setInterval(updateCountdown, 1000);
     })();
   </script>
 </body>
