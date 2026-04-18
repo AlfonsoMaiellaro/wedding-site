@@ -98,7 +98,7 @@
       display:flex;
       align-items:flex-start;
       justify-content:center;
-      padding:calc(var(--nav-h) + 6px) 16px 14px;
+      padding:calc(var(--nav-h) + 14px) 16px 14px;
       overflow:hidden;
     }
 
@@ -131,20 +131,24 @@
       flex-direction:column;
       align-items:center;
       gap:8px;
-      transform:translateY(-10px);
+      transform:translateY(4px);
     }
 
-    /* COUNTDOWN SOLO TESTO */
-    .countdown-text{
+    /* COUNTDOWN */
+    .countdown-bar{
       width:min(760px, 100%);
+      padding:11px 16px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.28);
+      backdrop-filter:blur(8px);
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
       text-align:center;
       font-weight:800;
       font-size:16px;
       line-height:1.2;
       letter-spacing:.2px;
       color:#fff;
-      padding:4px 6px;
-      text-shadow:0 2px 10px rgba(0,0,0,.35);
     }
 
     /* CARD */
@@ -234,7 +238,7 @@
       }
 
       .hero-stack{
-        transform:translateY(-8px);
+        transform:translateY(6px);
       }
 
       h1{
@@ -244,20 +248,20 @@
 
     @media (max-width:560px){
       .hero{
-        padding-top:calc(var(--nav-h) + 2px);
+        padding-top:calc(var(--nav-h) + 10px);
         padding-bottom:10px;
       }
 
       .hero-stack{
         width:min(720px, 92%);
         gap:7px;
-        transform:translateY(-6px);
+        transform:translateY(8px);
       }
 
-      .countdown-text{
+      .countdown-bar{
         width:100%;
+        padding:10px 12px;
         font-size:13px;
-        padding:2px 4px;
       }
 
       .card{
@@ -303,8 +307,9 @@
         padding:7px 9px;
       }
 
-      .countdown-text{
+      .countdown-bar{
         font-size:12px;
+        padding:9px 10px;
       }
 
       .hero::before{
@@ -335,9 +340,9 @@
   <main class="hero">
     <div class="hero-stack">
 
-      <div class="countdown-text" aria-label="Countdown matrimonio" aria-live="polite">
+      <section class="countdown-bar" aria-label="Countdown matrimonio" aria-live="polite">
         <span id="countdown-inline">Mancano 0 giorni 00 ore 00 minuti 00 secondi</span>
-      </div>
+      </section>
 
       <section class="card" aria-label="Intro">
         <span class="kicker">1 Agosto 2026 • Salerno &amp; Costiera Amalfitana</span>
@@ -365,7 +370,7 @@
     (function () {
       const nav = document.getElementById("site-nav");
       const countdownEl = document.getElementById("countdown-inline");
-      const targetDate = new Date(2026, 7, 1, 0, 0, 0); // 1 agosto 2026
+      const targetDate = new Date(2026, 7, 1, 0, 0, 0);
 
       function setNavHeight() {
         document.documentElement.style.setProperty("--nav-h", nav.offsetHeight + "px");
@@ -377,7 +382,7 @@
 
       function updateCountdown() {
         const now = new Date();
-        let diff = targetDate.getTime() - now.getTime();
+        const diff = targetDate.getTime() - now.getTime();
 
         if (diff <= 0) {
           countdownEl.textContent = "Oggi è il grande giorno!";
