@@ -71,12 +71,12 @@
       position:relative;
       display:grid;
       place-items:center;
-      padding:110px 16px 36px; /* desktop */
+      padding:130px 16px 36px;
       overflow:hidden;
     }
-    /* ✅ MOBILE: spazio sopra per menu su 2 righe */
+
     @media (max-width:700px){
-      .hero{ padding-top:155px; }
+      .hero{ padding-top:185px; }
     }
 
     .hero::before{
@@ -97,11 +97,40 @@
       pointer-events:none;
     }
 
+    /* STACK countdown + card */
+    .hero-stack{
+      position:relative;
+      z-index:2;
+      width:min(820px, 100%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:16px;
+      transform:translateY(-10px);
+    }
+
+    .countdown-bar{
+      width:min(760px, calc(100% - 24px));
+      padding:12px 18px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(8px);
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+      text-align:center;
+      font-weight:800;
+      font-size:14px;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      color:var(--accent2);
+      line-height:1.2;
+    }
+
     /* CARD */
     .card{
       position:relative;
       z-index:2;
-      width:min(820px, 100%);
+      width:100%;
       padding:26px 22px;
       border-radius:var(--radius);
       border:1px solid var(--border);
@@ -109,9 +138,6 @@
       box-shadow: 0 18px 60px rgba(0,0,0,.35);
       text-align:center;
       transform:none;
-    }
-    @media (min-width:900px){
-      .card{ transform: translateY(-40px); }
     }
 
     .kicker{
@@ -126,9 +152,24 @@
       border:1px solid var(--border);
       background: rgba(0,0,0,.25);
     }
-    h1{margin:14px 0 8px;font-size:54px;letter-spacing:-.8px;line-height:1.02}
-    @media (max-width:560px){h1{font-size:40px}}
-    .sub{margin:0 auto 18px;max-width:55ch;color:var(--muted);font-size:16px}
+
+    h1{
+      margin:14px 0 8px;
+      font-size:54px;
+      letter-spacing:-.8px;
+      line-height:1.02;
+    }
+
+    @media (max-width:560px){
+      h1{font-size:40px}
+    }
+
+    .sub{
+      margin:0 auto 18px;
+      max-width:55ch;
+      color:var(--muted);
+      font-size:16px;
+    }
 
     .cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
     .cta .btn.primary{
@@ -140,20 +181,40 @@
 
     .mini{margin-top:18px;color:rgba(255,255,255,.70);font-size:12px}
 
-    /* ✅ MOBILE FIX: card più compatta e un po' più in alto */
+    /* MOBILE */
     @media (max-width:560px){
-      .hero{ padding-bottom:18px; }
-
-      .card{
-        width:min(720px, 92%);
-        padding:14px 14px;
-        border-radius:16px;
-        transform: translateY(-48px);
+      .hero{
+        padding-top:195px;
+        padding-bottom:18px;
       }
 
-      .kicker{ font-size:11px; padding:7px 10px; }
+      .hero-stack{
+        width:min(720px, 92%);
+        gap:12px;
+        transform:translateY(-24px);
+      }
 
-      h1{ font-size:34px; margin:10px 0 6px; }
+      .countdown-bar{
+        width:100%;
+        font-size:12px;
+        padding:10px 12px;
+      }
+
+      .card{
+        width:100%;
+        padding:14px 14px;
+        border-radius:16px;
+      }
+
+      .kicker{
+        font-size:11px;
+        padding:7px 10px;
+      }
+
+      h1{
+        font-size:34px;
+        margin:10px 0 6px;
+      }
 
       .sub{
         font-size:14px;
@@ -167,15 +228,35 @@
         gap:10px;
         margin-top:8px;
       }
+
       .cta .btn{
         width:100%;
         padding:11px 12px;
       }
 
-      .mini{ margin-top:10px; font-size:12px; }
+      .mini{
+        margin-top:10px;
+        font-size:12px;
+      }
 
-      /* opzionale: inquadratura mobile */
-      .hero::before{ background-position:50% 78%; }
+      .hero::before{
+        background-position:50% 78%;
+      }
+    }
+
+    /* SCHERMI PICCOLI TIPO S25 "LISCIO" */
+    @media (max-width:430px){
+      .hero{ padding-top:208px; }
+
+      .countdown-bar{
+        font-size:11px;
+        padding:9px 10px;
+      }
+
+      .menu a{
+        font-size:12px;
+        padding:8px 10px;
+      }
     }
   </style>
 </head>
@@ -198,21 +279,53 @@
   </header>
 
   <main class="hero">
-    <section class="card" aria-label="Intro">
-      <span class="kicker">1 Agosto 2026 • Salerno &amp; Costiera Amalfitana</span>
-      <h1>Silvia e Alfonso</h1>
-
-      <p class="sub">
-        Siamo felici di festeggiare con voi il nostro matrimonio!<br>
-        Qui trovate tutte le info utili sulla giornata.
-      </p>
-
-      <div class="cta">
-        <a class="btn primary"
-           href="https://docs.google.com/forms/d/e/1FAIpQLSev_wvk0_GFHD54z9lt7cpu3dRcEWDPRREAroY-0sifc5AQew/viewform?usp=header"
-           target="_blank" rel="noreferrer">Conferma la tua presenza</a>
+    <div class="hero-stack">
+      <div class="countdown-bar" aria-live="polite">
+        <span id="countdown-text">Mancano ... giorni al matrimonio</span>
       </div>
-    </section>
+
+      <section class="card" aria-label="Intro">
+        <span class="kicker">1 Agosto 2026 • Salerno &amp; Costiera Amalfitana</span>
+        <h1>Silvia e Alfonso</h1>
+
+        <p class="sub">
+          Siamo felici di festeggiare con voi il nostro matrimonio!<br>
+          Qui trovate tutte le info utili sulla giornata.
+        </p>
+
+        <div class="cta">
+          <a class="btn primary"
+             href="https://docs.google.com/forms/d/e/1FAIpQLSev_wvk0_GFHD54z9lt7cpu3dRcEWDPRREAroY-0sifc5AQew/viewform?usp=header"
+             target="_blank" rel="noreferrer">Conferma la tua presenza</a>
+        </div>
+      </section>
+    </div>
   </main>
+
+  <script>
+    (function () {
+      const countdownEl = document.getElementById("countdown-text");
+      const targetDate = new Date(2026, 7, 1); // 1 agosto 2026
+
+      function updateCountdown() {
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const diffDays = Math.round((targetDate - today) / (1000 * 60 * 60 * 24));
+
+        if (diffDays > 1) {
+          countdownEl.textContent = `Mancano ${diffDays} giorni al matrimonio`;
+        } else if (diffDays === 1) {
+          countdownEl.textContent = "Manca 1 giorno al matrimonio";
+        } else if (diffDays === 0) {
+          countdownEl.textContent = "Oggi è il grande giorno!";
+        } else {
+          countdownEl.textContent = "Silvia e Alfonso si sono sposati!";
+        }
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 60 * 60 * 1000);
+    })();
+  </script>
 </body>
 </html>
