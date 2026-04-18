@@ -95,9 +95,10 @@
     .hero{
       min-height:100svh;
       position:relative;
-      display:grid;
-      place-items:center;
-      padding:calc(var(--nav-h) + 6px) 16px 18px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:calc(var(--nav-h) + 6px) 16px 14px;
       overflow:hidden;
     }
 
@@ -107,7 +108,7 @@
       inset:0;
       background-image:url("assets/hero.jpeg");
       background-size:cover;
-      background-position:50% 74%;
+      background-position:50% 78%;
       transform:scale(1.02);
       pointer-events:none;
     }
@@ -130,61 +131,24 @@
       flex-direction:column;
       align-items:center;
       gap:8px;
-      transform:translateY(-34px);
+      transform:translateY(-10px);
     }
 
     /* COUNTDOWN */
     .countdown-bar{
       width:min(760px, 100%);
-      padding:9px 10px 10px;
-      border-radius:20px;
+      padding:11px 16px;
+      border-radius:999px;
       border:1px solid var(--border);
       background:rgba(0,0,0,.28);
       backdrop-filter:blur(8px);
       box-shadow:0 10px 30px rgba(0,0,0,.18);
       text-align:center;
-    }
-
-    .countdown-title{
-      font-size:11px;
       font-weight:800;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:7px;
+      font-size:16px;
       line-height:1.2;
-    }
-
-    .countdown-grid{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:6px;
-    }
-
-    .countdown-item{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:12px;
-      padding:7px 2px;
-    }
-
-    .countdown-number{
-      display:block;
-      font-size:24px;
-      line-height:1;
-      font-weight:800;
-      letter-spacing:-.5px;
+      letter-spacing:.2px;
       color:#fff;
-    }
-
-    .countdown-label{
-      display:block;
-      margin-top:4px;
-      font-size:9px;
-      font-weight:700;
-      letter-spacing:.8px;
-      text-transform:uppercase;
-      color:var(--muted);
     }
 
     /* CARD */
@@ -269,8 +233,12 @@
         padding:8px 10px;
       }
 
+      .hero{
+        padding-bottom:12px;
+      }
+
       .hero-stack{
-        transform:translateY(-28px);
+        transform:translateY(-8px);
       }
 
       h1{
@@ -281,42 +249,19 @@
     @media (max-width:560px){
       .hero{
         padding-top:calc(var(--nav-h) + 2px);
-        padding-bottom:14px;
+        padding-bottom:10px;
       }
 
       .hero-stack{
         width:min(720px, 92%);
         gap:7px;
-        transform:translateY(-32px);
+        transform:translateY(-6px);
       }
 
       .countdown-bar{
         width:100%;
-        padding:8px 9px 9px;
-        border-radius:18px;
-      }
-
-      .countdown-title{
-        font-size:10px;
-        margin-bottom:6px;
-      }
-
-      .countdown-grid{
-        gap:5px;
-      }
-
-      .countdown-item{
-        padding:6px 2px;
-        border-radius:11px;
-      }
-
-      .countdown-number{
-        font-size:22px;
-      }
-
-      .countdown-label{
-        font-size:8px;
-        letter-spacing:.7px;
+        padding:10px 12px;
+        font-size:13px;
       }
 
       .card{
@@ -352,7 +297,7 @@
       }
 
       .hero::before{
-        background-position:50% 76%;
+        background-position:50% 80%;
       }
     }
 
@@ -362,12 +307,13 @@
         padding:7px 9px;
       }
 
-      .countdown-number{
-        font-size:20px;
+      .countdown-bar{
+        font-size:12px;
+        padding:9px 10px;
       }
 
-      .countdown-label{
-        font-size:7.5px;
+      .hero::before{
+        background-position:50% 81%;
       }
     }
   </style>
@@ -395,26 +341,7 @@
     <div class="hero-stack">
 
       <section class="countdown-bar" aria-label="Countdown matrimonio" aria-live="polite">
-        <div class="countdown-title" id="countdown-title">Mancano ... giorni al matrimonio</div>
-
-        <div class="countdown-grid">
-          <div class="countdown-item">
-            <span class="countdown-number" id="days">0</span>
-            <span class="countdown-label">Giorni</span>
-          </div>
-          <div class="countdown-item">
-            <span class="countdown-number" id="hours">00</span>
-            <span class="countdown-label">Ore</span>
-          </div>
-          <div class="countdown-item">
-            <span class="countdown-number" id="minutes">00</span>
-            <span class="countdown-label">Minuti</span>
-          </div>
-          <div class="countdown-item">
-            <span class="countdown-number" id="seconds">00</span>
-            <span class="countdown-label">Secondi</span>
-          </div>
-        </div>
+        <span id="countdown-inline">Mancano 0 giorni 00 ore 00 minuti 00 secondi</span>
       </section>
 
       <section class="card" aria-label="Intro">
@@ -442,12 +369,7 @@
   <script>
     (function () {
       const nav = document.getElementById("site-nav");
-      const titleEl = document.getElementById("countdown-title");
-      const daysEl = document.getElementById("days");
-      const hoursEl = document.getElementById("hours");
-      const minutesEl = document.getElementById("minutes");
-      const secondsEl = document.getElementById("seconds");
-
+      const countdownEl = document.getElementById("countdown-inline");
       const targetDate = new Date(2026, 7, 1, 0, 0, 0); // 1 agosto 2026
 
       function setNavHeight() {
@@ -463,11 +385,7 @@
         let diff = targetDate.getTime() - now.getTime();
 
         if (diff <= 0) {
-          titleEl.textContent = "Oggi è il grande giorno!";
-          daysEl.textContent = "0";
-          hoursEl.textContent = "00";
-          minutesEl.textContent = "00";
-          secondsEl.textContent = "00";
+          countdownEl.textContent = "Oggi è il grande giorno!";
           return;
         }
 
@@ -477,14 +395,8 @@
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
 
-        titleEl.textContent = days === 1
-          ? "Manca 1 giorno al matrimonio"
-          : `Mancano ${days} giorni al matrimonio`;
-
-        daysEl.textContent = days;
-        hoursEl.textContent = pad(hours);
-        minutesEl.textContent = pad(minutes);
-        secondsEl.textContent = pad(seconds);
+        countdownEl.textContent =
+          `${days} giorni ${pad(hours)} ore ${pad(minutes)} minuti ${pad(seconds)} secondi`;
       }
 
       setNavHeight();
